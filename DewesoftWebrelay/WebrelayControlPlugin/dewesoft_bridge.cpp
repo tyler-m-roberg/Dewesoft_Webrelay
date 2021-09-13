@@ -104,6 +104,7 @@ void DewesoftBridge::onGetData(const AcquiredDataInfo& acquiredDataInfo)
 
 
     webrelayGenerator.getData(startTime, sampleRate, numSamples);
+    //This is a comment
 }
 
 void DewesoftBridge::onStopData()
