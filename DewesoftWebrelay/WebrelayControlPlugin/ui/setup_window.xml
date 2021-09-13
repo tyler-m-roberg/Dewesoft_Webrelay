@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window xmlns="https://mui.dewesoft.com/schema/1.1">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100%"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100%"/>
+        </Grid.RowDefinitions>
+
+        <CaptionPanel Grid.Row="0" Grid.Column="0" Title="Add Web Relay" Name="CreationPanel">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="1" Grid.Column="1"  Text="IP Address" Name="ipAddressLabel" Align="Fill" TextAlign="Center"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Placeholder="" Name="ipAddressTxtBox" ValidateType="IP" />
+
+                <Label Grid.Row="1" Grid.Column="3"  Text="Relay #" Name="relayNumLabel" Align="Fill" TextAlign="Center"/>
+                <TextBox Grid.Row="2" Grid.Column="3" Placeholder="" Name="relayNumTxtBox" ValidateType="Integer" />
+                
+
+                <Label Grid.Row="1" Grid.Column="5" Text="Trigger Channel" Name="triggerChanneLabel" Align="Fill" TextAlign="Center"/>
+                <ComboBox Grid.Row="2" Grid.Column="5" Name="triggerChannelCBox"/>
+
+                <Label Grid.Row="1" Grid.Column="7" Text="Edge Type" Name ="edgeTypeLabel" Align="Fill" TextAlign="Center"/>
+                <ComboBox Grid.Row="2" Grid.Column="7" Name="edgeTypeCBox"/>
+
+                <Label Grid.Row="1" Grid.Column="9" Text="Trigger Level" Name="triggerLevelLabel" Align="Fill" TextAlign="Center"/>
+                <TextBox Grid.Row="2" Grid.Column="9" Placeholder="" Name="triggerLevelTxtBox" ValidateType="Double"/>
+
+                <Button Grid.Row="2" Grid.Column="11" Label="Submit" Name="submitBtn" />
+                
+            </Grid>
+        </CaptionPanel>
+        <CaptionPanel Grid.Row="1" Grid.Column="0" Title="Webrelay List" Name="CurrentRelayPanel">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="490"/>
+                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="100"/>
+                    
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                
+                <Button Grid.Column="3" Grid.Row="3" Label="Delete" Name="deleteBtn"/>
+                <ListBox Grid.Row="1" Grid.Column="1" SelectionMode="Single" Name="listBox" Grid.ColumnSpan="3" />
+
+            </Grid>
+        </CaptionPanel>
+    </Grid>
+</Window>
