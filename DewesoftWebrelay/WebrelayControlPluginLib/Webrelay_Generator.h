@@ -22,7 +22,8 @@ public:
 
     void getData(const double& startTime,
                  const double& sampleRate,
-                   const size_t& numSamples);
+                   const size_t& numSamples,
+                    const TriggerChannelData& triggerChannelData );
 
     std::map<int, std::string> GetTriggerChannels() const;
 

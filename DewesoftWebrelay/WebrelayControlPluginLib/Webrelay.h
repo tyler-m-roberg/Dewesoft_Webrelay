@@ -12,12 +12,15 @@ enum EdgeTypes
 
 struct TriggerChannelData
 {
+    int relayID;
     double currentSample;
     double prevSample;
 
-    TriggerChannelData(const double& currentSample, const double& prevSample)
-        : currentSample(currentSample)
+    TriggerChannelData(const int& relayID, const double& currentSample, const double& prevSample)
+        : relayID(relayID),
+        currentSample(currentSample)
         , prevSample(prevSample)
+         
     {
     }
 };
@@ -39,7 +42,7 @@ public:
     Dewesoft::Utils::Dcom::OutputChannel::OutputChannelPtr getOutputChannel() const;
     std::string getOutputChannelName() const;
 
-    void getData(const double& startTime, const double& sampleRate, const size_t& numSamples, const std::map<int,TriggerChannelData>& channelData);
+    void getData(const double& startTime, const double& sampleRate, const size_t& numSamples, const TriggerChannelData& channelData);
 
     void saveSetup(const Dewesoft::Utils::Serialization::NodePtr& node) const;
     void loadSetup(const Dewesoft::Utils::Serialization::NodePtr& node);

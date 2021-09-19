@@ -130,7 +130,7 @@ void DewesoftBridge::onGetData(const AcquiredDataInfo& acquiredDataInfo)
     //    {
     //        float currentSample = pair.second->DBValues[lastPosChecked % pair.second->DBBufSize];
     //        float nextSample = pair.second->DBValues[(lastPosChecked + 1) % pair.second->DBBufSize];
-
+                
     //        
 
     //        lastPosChecked++;

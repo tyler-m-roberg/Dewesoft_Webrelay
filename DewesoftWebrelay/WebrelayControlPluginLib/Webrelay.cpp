@@ -47,7 +47,7 @@ std::string Webrelay::getOutputChannelName() const
 void Webrelay::getData(const double& startTime,
                        const double& sampleRate,
                        const size_t& numSamples,
-                       const std::map<int, TriggerChannelData>& channelData)
+                       const TriggerChannelData& triggerChannelData)
 {
 
     //Add code to loop through channelData vector until data object is found with correct channel name. Then check if
