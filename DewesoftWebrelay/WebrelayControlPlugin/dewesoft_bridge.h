@@ -88,4 +88,6 @@ public:
     IChannelPtr inputChannel;
 
     int64_t lastPosChecked;
+    std::map<int, std::string> triggerChannelMap;
+    std::map<int, IChannelPtr> triggerChannelInterfaceMap;
 };

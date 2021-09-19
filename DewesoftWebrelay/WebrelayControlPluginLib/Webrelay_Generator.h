@@ -5,6 +5,7 @@
 #include <dcomlib/dcom_utils/dcom.h>;
 #include <commonlib/serialization/node.h>
 #include "Webrelay.h"
+#include <map>
 
 class WebrelayGenerator
 {
@@ -21,7 +22,10 @@ public:
 
     void getData(const double& startTime,
                  const double& sampleRate,
-                 const size_t& numSamples);
+                   const size_t& numSamples);
+
+    std::map<int, std::string> GetTriggerChannels() const;
+
 
     void clear();
 

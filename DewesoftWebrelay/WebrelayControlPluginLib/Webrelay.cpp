@@ -9,6 +9,7 @@ Webrelay::Webrelay(OutputChannelPtr outputChannel)
 {
 }
 
+
 Webrelay::Webrelay(OutputChannelPtr outputChannel,
                    std::string outputChannelName,
                    int relayID,
@@ -43,7 +44,10 @@ std::string Webrelay::getOutputChannelName() const
 }
 
 
-void Webrelay::getData(const double& startTime, const double& sampleRate, const size_t& numSamples)
+void Webrelay::getData(const double& startTime,
+                       const double& sampleRate,
+                       const size_t& numSamples,
+                       const std::map<int, TriggerChannelData>& channelData)
 {
 
     //Add code to loop through channelData vector until data object is found with correct channel name. Then check if
@@ -59,7 +63,7 @@ void Webrelay::getData(const double& startTime, const double& sampleRate, const 
 
     for (size_t i = 0; i < numSamples; ++i)
     {
-        //outputChannel->addSyncSample(value);
+        outputChannel->addSyncSample(1.0);
     }
     
  }   

@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "dewesoft_bridge.h"
+#include <iostream>
 
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -73,7 +74,6 @@ void DewesoftBridge::onClearSetup()
 
 void DewesoftBridge::onNewSetup()
 {
-
 }
 
 void DewesoftBridge::onLoadSetup(NodePtr node, bool dataFile)
@@ -90,11 +90,26 @@ void DewesoftBridge::onPreInitiate()
 {
 }
 
+// get vector of trigger channel and id's maybe as hash map
 void DewesoftBridge::onStartData()
 {
+
+    AllocConsole();
+    freopen("CONOUT$", "w", stdout);
+    freopen("CONOUT$", "w", stderr);  
+    triggerChannelMap = webrelayGenerator.GetTriggerChannels();
+
+    for (auto const& pair : triggerChannelMap)
+    {
+        triggerChannelInterfaceMap.emplace(pair.first, app->Data->FindChannel(pair.second.c_str()));
+    }
+
+    lastPosChecked = 0;
+
 }
 
-//Code keeps crashing dewesoft need to investigate a better way to get channels and read data
+// Code keeps crashing dewesoft need to investigate a better way to get channels and read data
+// Map trigger channel values and send data to get data function of relays
 
 void DewesoftBridge::onGetData(const AcquiredDataInfo& acquiredDataInfo)
 {
@@ -102,9 +117,28 @@ void DewesoftBridge::onGetData(const AcquiredDataInfo& acquiredDataInfo)
     const double startTime = acquiredDataInfo.beginPos / sampleRate;
     const size_t numSamples = acquiredDataInfo.endPos - acquiredDataInfo.beginPos;
 
+     std::cout << acquiredDataInfo.beginPos << "," << acquiredDataInfo.endPos << std::endl;
+
+    //for (auto const& pair : triggerChannelInterfaceMap)
+    //{
+    //    int minBlockSize =
+    //        (pair.second->DBPos - (lastPosChecked % pair.second->DBBufSize) + pair.second->DBBufSize) %
+    //        pair.second->DBBufSize;
+
+
+    //    for (int i = 0; i < minBlockSize - 1; i++)
+    //    {
+    //        float currentSample = pair.second->DBValues[lastPosChecked % pair.second->DBBufSize];
+    //        float nextSample = pair.second->DBValues[(lastPosChecked + 1) % pair.second->DBBufSize];
+
+    //        
+
+    //        lastPosChecked++;
+    //    }
+
+    //}
 
     webrelayGenerator.getData(startTime, sampleRate, numSamples);
-    //This is a comment
 }
 
 void DewesoftBridge::onStopData()

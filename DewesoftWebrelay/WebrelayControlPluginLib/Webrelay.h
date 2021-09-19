@@ -2,6 +2,7 @@
 
 #include <dcomlib/dcom_output_channel/output_channel.h>
 #include <dcomlib/dcom_output_channel/output_factory.h>
+#include <map>
 
 enum EdgeTypes
 {
@@ -9,6 +10,17 @@ enum EdgeTypes
     RisingEdge
 };
 
+struct TriggerChannelData
+{
+    double currentSample;
+    double prevSample;
+
+    TriggerChannelData(const double& currentSample, const double& prevSample)
+        : currentSample(currentSample)
+        , prevSample(prevSample)
+    {
+    }
+};
 
 class Webrelay
 {
@@ -27,7 +39,7 @@ public:
     Dewesoft::Utils::Dcom::OutputChannel::OutputChannelPtr getOutputChannel() const;
     std::string getOutputChannelName() const;
 
-    void getData(const double& startTime, const double& sampleRate, const size_t& numSamples);
+    void getData(const double& startTime, const double& sampleRate, const size_t& numSamples, const std::map<int,TriggerChannelData>& channelData);
 
     void saveSetup(const Dewesoft::Utils::Serialization::NodePtr& node) const;
     void loadSetup(const Dewesoft::Utils::Serialization::NodePtr& node);
@@ -59,7 +71,4 @@ private:
     std::string triggerChannel;
     EdgeTypes edgeType;
     double triggerLevel;
-
-
-    
 };

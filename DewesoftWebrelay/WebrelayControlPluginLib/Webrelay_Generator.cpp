@@ -1,5 +1,7 @@
 #include "Webrelay_Generator.h"
 #include <string>
+#include <map>
+
 
 using namespace Dewesoft::Utils::Dcom::OutputChannel;
 using namespace Dewesoft::Utils::Serialization;
@@ -48,8 +50,25 @@ void WebrelayGenerator::addWebRelay(std::string outputChannelName,
 void WebrelayGenerator::getData(const double& startTime, const double& sampleRate, const size_t& numSamples)
 {
     for (auto& webrelay : webRelays)
-        webrelay.getData(startTime, sampleRate, numSamples);
+    {
+        std::map<int, TriggerChannelData> dataMap;
+        webrelay.getData(startTime, sampleRate, numSamples, dataMap);
+    }
 }
+
+
+//Create vector of trigger channels and id's, maybe use a hash map
+std::map<int, std::string> WebrelayGenerator::GetTriggerChannels() const
+{
+    std::map<int, std::string> triggerChannelMap;
+
+    for (auto& webrelay : webRelays)
+    {
+        triggerChannelMap.emplace(std::make_pair(webrelay.getRelayID(), webrelay.getTriggerChannel()));
+    }
+
+    return triggerChannelMap;
+} 
 
 void WebrelayGenerator::clear()
 {
