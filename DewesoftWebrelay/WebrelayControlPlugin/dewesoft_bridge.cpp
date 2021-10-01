@@ -219,3 +219,7 @@ void DewesoftBridge::deleteWebRelay(const int& relayID)
         relayIndex++;
     }
 }
+
+void newFunction()
+{
+}
