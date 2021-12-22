@@ -47,28 +47,14 @@ void WebrelayGenerator::addWebRelay(std::string outputChannelName,
     
 }
 
-void WebrelayGenerator::getData(const double& startTime, const double& sampleRate, const size_t& numSamples, const TriggerChannelData& triggerChannelData)
+void WebrelayGenerator::getData(const double& startTime, const double& sampleRate, const size_t& numSamples)
 {
     for (auto& webrelay : webRelays)
     {
         
-        webrelay.getData(startTime, sampleRate, numSamples, triggerChannelData);
+        webrelay.getData(startTime, sampleRate, numSamples);
     }
 }
-
-
-//Create vector of trigger channels and id's, maybe use a hash map
-std::map<int, std::string> WebrelayGenerator::GetTriggerChannels() const
-{
-    std::map<int, std::string> triggerChannelMap;
-
-    for (auto& webrelay : webRelays)
-    {
-        triggerChannelMap.emplace(std::make_pair(webrelay.getRelayID(), webrelay.getTriggerChannel()));
-    }
-
-    return triggerChannelMap;
-} 
 
 void WebrelayGenerator::clear()
 {

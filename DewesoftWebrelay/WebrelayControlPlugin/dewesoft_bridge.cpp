@@ -94,18 +94,9 @@ void DewesoftBridge::onPreInitiate()
 void DewesoftBridge::onStartData()
 {
 
-    AllocConsole();
+   /* AllocConsole();
     freopen("CONOUT$", "w", stdout);
-    freopen("CONOUT$", "w", stderr);  
-    triggerChannelMap = webrelayGenerator.GetTriggerChannels();
-
-    for (auto const& pair : triggerChannelMap)
-    {
-        triggerChannelInterfaceMap.emplace(pair.first, app->Data->FindChannel(pair.second.c_str()));
-    }
-
-    lastPosChecked = 0;
-
+    freopen("CONOUT$", "w", stderr);*/  
 }
 
 // Code keeps crashing dewesoft need to investigate a better way to get channels and read data
@@ -118,25 +109,6 @@ void DewesoftBridge::onGetData(const AcquiredDataInfo& acquiredDataInfo)
     const size_t numSamples = acquiredDataInfo.endPos - acquiredDataInfo.beginPos;
 
      std::cout << acquiredDataInfo.beginPos << "," << acquiredDataInfo.endPos << std::endl;
-
-    //for (auto const& pair : triggerChannelInterfaceMap)
-    //{
-    //    int minBlockSize =
-    //        (pair.second->DBPos - (lastPosChecked % pair.second->DBBufSize) + pair.second->DBBufSize) %
-    //        pair.second->DBBufSize;
-
-
-    //    for (int i = 0; i < minBlockSize - 1; i++)
-    //    {
-    //        float currentSample = pair.second->DBValues[lastPosChecked % pair.second->DBBufSize];
-    //        float nextSample = pair.second->DBValues[(lastPosChecked + 1) % pair.second->DBBufSize];
-                
-    //        
-
-    //        lastPosChecked++;
-    //    }
-
-    //}
 
     webrelayGenerator.getData(startTime, sampleRate, numSamples);
 }

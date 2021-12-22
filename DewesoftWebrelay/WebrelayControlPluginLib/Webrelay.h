@@ -2,27 +2,11 @@
 
 #include <dcomlib/dcom_output_channel/output_channel.h>
 #include <dcomlib/dcom_output_channel/output_factory.h>
-#include <map>
 
 enum EdgeTypes
 {
     FallingEdge = 0,
     RisingEdge
-};
-
-struct TriggerChannelData
-{
-    int relayID;
-    double currentSample;
-    double prevSample;
-
-    TriggerChannelData(const int& relayID, const double& currentSample, const double& prevSample)
-        : relayID(relayID),
-        currentSample(currentSample)
-        , prevSample(prevSample)
-         
-    {
-    }
 };
 
 class Webrelay
@@ -42,7 +26,7 @@ public:
     Dewesoft::Utils::Dcom::OutputChannel::OutputChannelPtr getOutputChannel() const;
     std::string getOutputChannelName() const;
 
-    void getData(const double& startTime, const double& sampleRate, const size_t& numSamples, const TriggerChannelData& channelData);
+    void getData(const double& startTime, const double& sampleRate, const size_t& numSamples);
 
     void saveSetup(const Dewesoft::Utils::Serialization::NodePtr& node) const;
     void loadSetup(const Dewesoft::Utils::Serialization::NodePtr& node);
