@@ -22,7 +22,7 @@ public:
 
     void getData(const double& startTime,
                  const double& sampleRate,
-                   const size_t& numSamples);
+                   const size_t& numSamples,const int64_t& beginSample,const int64_t& endSample);
 
     void clear();
 

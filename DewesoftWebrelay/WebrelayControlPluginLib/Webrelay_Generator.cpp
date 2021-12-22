@@ -47,12 +47,13 @@ void WebrelayGenerator::addWebRelay(std::string outputChannelName,
     
 }
 
-void WebrelayGenerator::getData(const double& startTime, const double& sampleRate, const size_t& numSamples)
+void WebrelayGenerator::getData(
+    const double& startTime, const double& sampleRate, const size_t& numSamples, const int64_t& beginSample, const int64_t& endSample)
 {
     for (auto& webrelay : webRelays)
     {
         
-        webrelay.getData(startTime, sampleRate, numSamples);
+        webrelay.getData(startTime, sampleRate, numSamples, beginSample, endSample);
     }
 }
 

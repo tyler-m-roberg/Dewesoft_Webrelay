@@ -108,9 +108,9 @@ void DewesoftBridge::onGetData(const AcquiredDataInfo& acquiredDataInfo)
     const double startTime = acquiredDataInfo.beginPos / sampleRate;
     const size_t numSamples = acquiredDataInfo.endPos - acquiredDataInfo.beginPos;
 
-     std::cout << acquiredDataInfo.beginPos << "," << acquiredDataInfo.endPos << std::endl;
+    // std::cout << acquiredDataInfo.beginPos << "," << acquiredDataInfo.endPos << std::endl;
 
-    webrelayGenerator.getData(startTime, sampleRate, numSamples);
+    webrelayGenerator.getData(startTime, sampleRate, numSamples, acquiredDataInfo.beginPos, acquiredDataInfo.endPos);
 }
 
 void DewesoftBridge::onStopData()

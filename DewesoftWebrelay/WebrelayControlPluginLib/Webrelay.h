@@ -26,7 +26,8 @@ public:
     Dewesoft::Utils::Dcom::OutputChannel::OutputChannelPtr getOutputChannel() const;
     std::string getOutputChannelName() const;
 
-    void getData(const double& startTime, const double& sampleRate, const size_t& numSamples);
+    void getData(
+        const double& startTime, const double& sampleRate, const size_t& numSamples, const int64_t& beginSample, const int64_t& endSample);
 
     void saveSetup(const Dewesoft::Utils::Serialization::NodePtr& node) const;
     void loadSetup(const Dewesoft::Utils::Serialization::NodePtr& node);
